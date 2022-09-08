@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">MemoryNotes</string>
+
+    <string name="hi">Hi %s!</string>
+
+    <string name="auth_title">Create your account\nor sign in if you have one</string>
+    <string name="user_name">user name</string>
+    <string name="enter_to_account">Enter to account</string>
+
+    <string name="add_a_note">No notes found for this user\nclick to add notes</string>
+
+    <string name="note_title">Note title</string>
+    <string name="note_message">Note message</string>
+    <string name="watch_on_map">Watch on map</string>
+
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+
+    <string name="add_note">Add note</string>
+
+    <string name="title_should_not_be_empty">Title should not be empty</string>
+    <string name="message_should_not_be_empty">Message should not be empty</string>
+    <string name="lat_should_not_be_empty">Latitude should not be empty</string>
+    <string name="lng_should_not_be_empty">Longitude should not be empty</string>
+
+    <string name="map">Map view</string>
+    <string name="add">Add note</string>
+    <string name="filter">Filter notes</string>
+
+    <string name="filter_title">Filter by date</string>
+
+    <string name="start_date">Start date:</string>
+    <string name="end_date">End date:</string>
+    <string name="click_to_pick">Click to pick</string>
+
+    <string name="apply_filter">Apply filter</string>
+
+    <string name="delete_note_title">Delete note</string>
+    <string name="delete_note_message">Are you sure you want to delete this note? After deleting this note you won\'t be able to see this note again</string>
+    <string name="delete_note">Delete note</string>
+    <string name="cancel">Cancel</string>
+</resources>

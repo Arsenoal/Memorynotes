@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "330413723417",
+    "project_id": "memory-notes-57e28",
+    "storage_bucket": "memory-notes-57e28.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330413723417:android:4efdba31d130da456bff88",
+        "android_client_info": {
+          "package_name": "com.bumian.memorynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330413723417-tpf1h4nckdfj1bqgn0njajufljnvv1fk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxxkVWLQGMDgDgibXZUeZ5fXIJ2UPOyfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330413723417-tpf1h4nckdfj1bqgn0njajufljnvv1fk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

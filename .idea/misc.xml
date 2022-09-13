@@ -6,9 +6,11 @@
         <entry key="app/src/main/res/drawable/circkle_background.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/custom_marker.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/error_background.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_arrowforward.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_error.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_grid_view.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_grid_view_black.xml" value="0.1975" />
@@ -23,8 +25,10 @@
         <entry key="app/src/main/res/layout/fragment_filter.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.40260416666666665" />
+        <entry key="app/src/main/res/layout/fragment_note.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.34421691894531237" />
         <entry key="app/src/main/res/layout/layout_no_notes_found.xml" value="0.3734375" />
+        <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/layout/marker_layout.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/menu/home_menu.xml" value="0.3045883178710937" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.22239583333333332" />

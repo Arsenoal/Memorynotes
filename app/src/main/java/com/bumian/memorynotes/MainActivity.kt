@@ -10,7 +10,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        replaceFragment(AuthFragment())
+        replaceFragmentClearBackstack(AuthFragment())
+    }
+
+    fun replaceFragmentClearBackstack(fragment: Fragment) {
+        supportFragmentManager.run {
+            var i = 0
+            while(i < backStackEntryCount) {
+                popBackStack()
+                i++
+            }
+            beginTransaction().replace(
+                R.id.fragmentContainer,
+                fragment
+            ).addToBackStack(null).commit()
+        }
     }
 
     fun replaceFragment(fragment: Fragment) {

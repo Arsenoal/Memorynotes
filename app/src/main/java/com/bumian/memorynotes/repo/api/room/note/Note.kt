@@ -1,19 +1,23 @@
 package com.bumian.memorynotes.repo.api.room.note
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 import java.util.*
 
 @Entity
+@Parcelize
 data class Note(
     @PrimaryKey
     val id: CharArray = CharArray(0),
     val title: String,
     val message: String,
     val image: String,
-    val location: LatLng,
+    val location: @RawValue LatLng,
     val date: Date
-) {
+): Parcelable {
     override fun toString(): String {
         return "$title-$message-$image-$location-$date"
     }

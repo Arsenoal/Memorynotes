@@ -42,4 +42,6 @@
     <string name="delete_note_message">Are you sure you want to delete this note? After deleting this note you won\'t be able to see this note again</string>
     <string name="delete_note">Delete note</string>
     <string name="cancel">Cancel</string>
+
+    <string name="location_on_map">Location on map:</string>
 </resources>

@@ -41,7 +41,7 @@ class AuthFragment: Fragment() {
 
         viewModel.existingUsers.observe(viewLifecycleOwner) {
             analyticsViewModel.sendEvent("User entered with existing account")
-            (requireActivity() as MainActivity).replaceFragment(HomeFragment())
+            (requireActivity() as MainActivity).replaceFragmentClearBackstack(HomeFragment())
         }
         viewModel.checkAccount()
 
@@ -51,7 +51,7 @@ class AuthFragment: Fragment() {
                 userNameLayout.error = "user name should not be empty"
             } else {
                 viewModel.userLoginSuccess.observe(viewLifecycleOwner) {
-                    (requireActivity() as MainActivity).replaceFragment(HomeFragment())
+                    (requireActivity() as MainActivity).replaceFragmentClearBackstack(HomeFragment())
                     analyticsViewModel.sendEvent("User created account")
                 }
                 viewModel.enterWith(userNameText)

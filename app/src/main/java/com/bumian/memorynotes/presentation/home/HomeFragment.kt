@@ -8,9 +8,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumian.memorynotes.MainActivity
 import com.bumian.memorynotes.R
 import com.bumian.memorynotes.common.EventBus
 import com.bumian.memorynotes.presentation.analytics.AnalyticsViewModel
+import com.bumian.memorynotes.presentation.details.NoteDetailsFragment
 import com.bumian.memorynotes.presentation.filter.FilterDialogFragment
 import com.bumian.memorynotes.presentation.note.AddNoteFragment
 import com.bumian.memorynotes.repo.analytics.FirebaseAnalytics
@@ -22,11 +24,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-@DelicateCoroutinesApi
 class HomeFragment: Fragment() {
 
     private val analyticsViewModel by lazy {
@@ -58,6 +59,9 @@ class HomeFragment: Fragment() {
                     .setNegativeButton(R.string.cancel) { _, _ -> }
                     .create()
                     .show()
+            },
+            onItemClick = { note ->
+                (requireActivity() as MainActivity).replaceFragment(NoteDetailsFragment.newInstance(note))
             }
         )
     }

@@ -1,7 +1,7 @@
 package com.bumian.memorynotes.presentation.home
 
 import android.annotation.SuppressLint
-import android.net.Uri
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +15,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumian.memorynotes.R
 import com.bumian.memorynotes.repo.api.room.note.Note
-import java.io.File
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import java.lang.Exception
 
 class NotesAdapter(
     val notes: MutableList<Note> = mutableListOf(),
     val onWatchOnMapClick: (Note) -> Unit,
-    val onRemoveClick: (Note) -> Unit
+    val onRemoveClick: (Note) -> Unit,
+    val onItemClick: (Note) -> Unit
 ): RecyclerView.Adapter<NotesAdapter.NotesViewHolder>(), AdapterDelegate<Note> {
 
     private lateinit var inflater: LayoutInflater
@@ -42,6 +49,7 @@ class NotesAdapter(
         fun bind(note: Note) {
             Glide.with(noteImage.context)
                 .load(note.image.toUri())
+                .skipMemoryCache(true)
                 .into(noteImage)
 
             noteMessage.text = note.message
@@ -54,7 +62,7 @@ class NotesAdapter(
             }
 
             container.setOnClickListener {
-
+                onItemClick.invoke(note)
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.bumian.memorynotes.presentation.home
 
+import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumian.memorynotes.R
 import com.bumian.memorynotes.repo.api.room.note.Note
+import java.io.File
 
 class NotesAdapter(
     val notes: MutableList<Note> = mutableListOf(),
     val onWatchOnMapClick: (Note) -> Unit,
     val onRemoveClick: (Note) -> Unit
-): RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
+): RecyclerView.Adapter<NotesAdapter.NotesViewHolder>(), AdapterDelegate<Note> {
 
-    lateinit var inflater: LayoutInflater
+    private lateinit var inflater: LayoutInflater
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -29,12 +32,12 @@ class NotesAdapter(
 
     inner class NotesViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        val container = itemView.findViewById<CardView>(R.id.itemContainer)
-        val noteImage = itemView.findViewById<ImageView>(R.id.noteImage)
-        val noteMessage = itemView.findViewById<TextView>(R.id.noteMessage)
-        val noteTitle = itemView.findViewById<TextView>(R.id.noteTitle)
-        val watchOnMap = itemView.findViewById<LinearLayout>(R.id.watchOnMap)
-        val remove = itemView.findViewById<AppCompatImageButton>(R.id.remove)
+        private val container = itemView.findViewById<CardView>(R.id.itemContainer)
+        private val noteImage = itemView.findViewById<ImageView>(R.id.noteImage)
+        private val noteMessage = itemView.findViewById<TextView>(R.id.noteMessage)
+        private val noteTitle = itemView.findViewById<TextView>(R.id.noteTitle)
+        private val watchOnMap = itemView.findViewById<LinearLayout>(R.id.watchOnMap)
+        private val remove = itemView.findViewById<AppCompatImageButton>(R.id.remove)
 
         fun bind(note: Note) {
             Glide.with(noteImage.context)
@@ -65,7 +68,8 @@ class NotesAdapter(
 
     override fun getItemCount() = notes.size
 
-    fun resetItems(items: List<Note>) {
+    @SuppressLint("NotifyDataSetChanged")
+    override fun resetItems(items: List<Note>) {
         notes.clear()
         notes.addAll(items)
         notifyDataSetChanged()

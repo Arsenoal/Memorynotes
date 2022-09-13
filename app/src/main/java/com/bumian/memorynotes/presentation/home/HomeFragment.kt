@@ -3,8 +3,10 @@ package com.bumian.memorynotes.presentation.home
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumian.memorynotes.R
 import com.bumian.memorynotes.common.EventBus
@@ -20,9 +22,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+@DelicateCoroutinesApi
 class HomeFragment: Fragment() {
 
     private val analyticsViewModel by lazy {
@@ -31,6 +35,7 @@ class HomeFragment: Fragment() {
 
     val viewModel by lazy {
         HomeViewModel(
+            requireActivity().application,
             RoomNotes(AppDataBase.db!!.noteDao()),
             RoomAuth(AppDataBase.db!!)
         )
@@ -50,14 +55,14 @@ class HomeFragment: Fragment() {
                     .setPositiveButton(R.string.delete_note) { _, _ ->
                         viewModel.removeNote(note)
                     }
-                    .setNegativeButton(R.string.cancel) { _, _ ->
-
-                    }
+                    .setNegativeButton(R.string.cancel) { _, _ -> }
                     .create()
                     .show()
             }
         )
     }
+
+    private var adapterDelegate = adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,15 +95,17 @@ class HomeFragment: Fragment() {
                 layout_no_notes_found.setOnClickListener {
                     AddNoteFragment().show(childFragmentManager, null)
                 }
-                adapter.resetItems(listOf())
+                adapterDelegate.resetItems(listOf())
             } else {
                 layout_no_notes_found.isVisible = false
-                adapter.resetItems(notes)
+                adapterDelegate.resetItems(notes)
             }
+
+            swipeRefresh.isRefreshing = false
         }
 
         viewModel.filteredNotesLiveData.observe(viewLifecycleOwner) { notes ->
-            adapter.resetItems(notes)
+            adapterDelegate.resetItems(notes)
         }
 
         viewModel.userNameLiveData.observe(viewLifecycleOwner) { name ->
@@ -117,6 +124,12 @@ class HomeFragment: Fragment() {
             when(menuItem.itemId) {
                 R.id.filter -> {
                     FilterDialogFragment().show(childFragmentManager, null)
+                }
+                R.id.list_view -> {
+                    viewModel.setViewType(false)
+                }
+                R.id.grid_view -> {
+                    viewModel.setViewType(true)
                 }
             }
             false
@@ -145,8 +158,28 @@ class HomeFragment: Fragment() {
             }
         }
 
+        viewModel.isGridViewLiveData.observe(viewLifecycleOwner) { isGridView ->
+            val icon =
+                if (isGridView) ContextCompat.getDrawable(requireContext(), R.drawable.ic_grid_view)
+                else ContextCompat.getDrawable(requireContext(), R.drawable.ic_list_view)
+            toolbar.menu.getItem(0).icon = icon
+
+            if(isGridView) {
+                items.layoutManager = GridLayoutManager(requireContext(), 2)
+                adapterDelegate.resetItems(allNotes)
+            }  else {
+                items.layoutManager = LinearLayoutManager(requireContext())
+                adapterDelegate.resetItems(allNotes)
+            }
+        }
+
+        viewModel.fetchViewType()
+
         items.adapter = adapter
-        items.layoutManager = LinearLayoutManager(requireContext())
+
+        swipeRefresh.setOnRefreshListener {
+            viewModel.getNotes()
+        }
     }
 
     private fun openMap(notes: List<Note>) {

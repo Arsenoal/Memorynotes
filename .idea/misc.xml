@@ -10,7 +10,11 @@
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_grid_view.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_grid_view_black.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_list_view.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_list_view_black.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_map.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_transparent.xml" value="0.1975" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37395833333333334" />
@@ -22,7 +26,7 @@
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.34421691894531237" />
         <entry key="app/src/main/res/layout/layout_no_notes_found.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/marker_layout.xml" value="0.40260416666666665" />
-        <entry key="app/src/main/res/menu/home_menu.xml" value="0.40260416666666665" />
+        <entry key="app/src/main/res/menu/home_menu.xml" value="0.3045883178710937" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1975" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1975" />

@@ -26,6 +26,9 @@
     <string name="map">Map view</string>
     <string name="add">Add note</string>
     <string name="filter">Filter notes</string>
+    <string name="view_type">View type</string>
+    <string name="list_view">List view</string>
+    <string name="grid_view">Grid view</string>
 
     <string name="filter_title">Filter by date</string>
 

@@ -13,7 +13,9 @@ import com.bumian.memorynotes.repo.analytics.FirebaseAnalytics
 import com.bumian.memorynotes.repo.auth.RoomAuth
 import com.bumian.memorynotes.repo.api.room.AppDataBase
 import kotlinx.android.synthetic.main.fragment_auth.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@DelicateCoroutinesApi
 class AuthFragment: Fragment() {
 
     private val viewModel by lazy {
@@ -48,7 +50,7 @@ class AuthFragment: Fragment() {
             if(userNameText.isEmpty()) {
                 userNameLayout.error = "user name should not be empty"
             } else {
-                viewModel.userLoginSuccess.observe(viewLifecycleOwner) { flag ->
+                viewModel.userLoginSuccess.observe(viewLifecycleOwner) {
                     (requireActivity() as MainActivity).replaceFragment(HomeFragment())
                     analyticsViewModel.sendEvent("User created account")
                 }

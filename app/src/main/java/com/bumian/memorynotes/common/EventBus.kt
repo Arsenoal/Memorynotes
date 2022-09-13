@@ -1,5 +1,6 @@
 package com.bumian.memorynotes.common
 
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,6 +13,8 @@ object EventBus {
         MutableStateFlow("")
     }
 
+
+    @DelicateCoroutinesApi
     fun pushEvent(name: String) {
         GlobalScope.launch {
             collector.emit(name)

@@ -3,6 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/view_type"
+        android:icon="@drawable/ic_list_view"
+        android:title="@string/view_type"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/list_view"
+                android:icon="@drawable/ic_list_view_black"
+               android:title="@string/list_view"/>
+            <item
+                android:id="@+id/grid_view"
+                android:icon="@drawable/ic_grid_view_black"
+                android:title="@string/grid_view"/>
+        </menu>
+
+    </item>
+
+    <item
         android:id="@+id/filter"
         android:icon="@drawable/ic_filter"
         android:title="@string/filter"

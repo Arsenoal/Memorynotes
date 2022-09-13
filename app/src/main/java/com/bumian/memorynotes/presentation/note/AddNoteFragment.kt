@@ -35,7 +35,7 @@ import java.util.*
 
 class AddNoteFragment: BottomSheetDialogFragment() {
 
-    var imageUri: Uri ?= null
+    private var imageUri: Uri ?= null
 
     private val analyticsViewModel by lazy {
         AnalyticsViewModel(FirebaseAnalytics())
@@ -127,6 +127,7 @@ class AddNoteFragment: BottomSheetDialogFragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun openGallery() {
         Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
             type = "image/*"
@@ -134,6 +135,7 @@ class AddNoteFragment: BottomSheetDialogFragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

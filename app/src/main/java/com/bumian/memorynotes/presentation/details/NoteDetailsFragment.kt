@@ -11,8 +11,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.bumian.memorynotes.MainActivity
 import com.bumian.memorynotes.R
+import com.bumian.memorynotes.presentation.analytics.AnalyticsViewModel
 import com.bumian.memorynotes.presentation.home.HomeFragment
 import com.bumian.memorynotes.presentation.home.HomeViewModel
+import com.bumian.memorynotes.repo.analytics.FirebaseAnalytics
 import com.bumian.memorynotes.repo.api.room.AppDataBase
 import com.bumian.memorynotes.repo.api.room.note.Note
 import com.bumian.memorynotes.repo.auth.RoomAuth
@@ -31,7 +33,12 @@ private const val NOTE = "NOTE"
 
 class NoteDetailsFragment: Fragment(), OnMapReadyCallback {
 
-    val viewModel by lazy {
+
+    private val analyticsViewModel by lazy {
+        AnalyticsViewModel(FirebaseAnalytics())
+    }
+
+    private val viewModel by lazy {
         HomeViewModel(
             requireActivity().application,
             RoomNotes(AppDataBase.db!!.noteDao()),
@@ -48,6 +55,8 @@ class NoteDetailsFragment: Fragment(), OnMapReadyCallback {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        analyticsViewModel.sendEvent("Note details opened")
+
         mapView.run {
             onCreate(savedInstanceState)
             getMapAsync(this@NoteDetailsFragment)

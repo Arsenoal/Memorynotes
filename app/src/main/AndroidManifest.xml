@@ -13,7 +13,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDeMNRmp96u28oyYrvxBZfL5f1zgRySTb8"/> <!-- paste api key here before running app -->
+            android:value="_._"/> <!-- paste api key here before running app -->
 
         <activity
             android:name="com.bumian.memorynotes.MainActivity"

@@ -1,17 +1,22 @@
 package com.bumian.memorynotes.presentation.home
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumian.memorynotes.MainActivity
 import com.bumian.memorynotes.R
 import com.bumian.memorynotes.common.EventBus
 import com.bumian.memorynotes.presentation.analytics.AnalyticsViewModel
+import com.bumian.memorynotes.presentation.common.MapIconView
 import com.bumian.memorynotes.presentation.details.NoteDetailsFragment
 import com.bumian.memorynotes.presentation.filter.FilterDialogFragment
 import com.bumian.memorynotes.presentation.note.AddNoteFragment
@@ -21,14 +26,18 @@ import com.bumian.memorynotes.repo.api.room.note.Note
 import com.bumian.memorynotes.repo.auth.RoomAuth
 import com.bumian.memorynotes.repo.notes.RoomNotes
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.ui.IconGenerator
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+
 
 class HomeFragment: Fragment() {
+
+    private lateinit var mInflater: LayoutInflater
 
     private val analyticsViewModel by lazy {
         AnalyticsViewModel(FirebaseAnalytics())
@@ -78,6 +87,7 @@ class HomeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mInflater = inflater
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -163,6 +173,9 @@ class HomeFragment: Fragment() {
         }
 
         viewModel.isGridViewLiveData.observe(viewLifecycleOwner) { isGridView ->
+            val viewTypeText = if(isGridView) "Grid" else "List"
+            analyticsViewModel.sendEvent("View type changed to $viewTypeText")
+
             val icon =
                 if (isGridView) ContextCompat.getDrawable(requireContext(), R.drawable.ic_grid_view)
                 else ContextCompat.getDrawable(requireContext(), R.drawable.ic_list_view)
@@ -192,11 +205,25 @@ class HomeFragment: Fragment() {
         val mapFragment = SupportMapFragment.newInstance().apply {
             getMapAsync { mMap ->
                 notes.forEach { note ->
-                    mMap.addMarker(
-                        MarkerOptions()
-                            .position(LatLng(note.location.lat, note.location.lng))
-                            .title(note.title)
-                    )
+                    val iconView = MapIconView(requireContext()).apply {
+                        println("image: ${note.image}")
+                        loadIcon(note.image.toUri())
+                    }
+
+                    lifecycleScope.launch {
+                        delay(1500)
+                        withContext(Dispatchers.Main) {
+                            val generator = IconGenerator(requireContext())
+                            generator.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.transparent_bg))
+                            generator.setContentView(iconView)
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(LatLng(note.location.lat, note.location.lng))
+                                    .title(note.title)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(generator.makeIcon()))
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -210,5 +237,4 @@ class HomeFragment: Fragment() {
             mapContainer.isVisible = false
         }
     }
-
 }

@@ -18,7 +18,13 @@
         <entry key="app/src/main/res/drawable/ic_list_view.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_list_view_black.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_map.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_map_icon.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/ic_svg.xml" value="0.1975" />
         <entry key="app/src/main/res/drawable/ic_transparent.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/left_circle_shape.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/map_icon_drawable.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/right_circle_shape.xml" value="0.1975" />
+        <entry key="app/src/main/res/drawable/trannsparent_bg.xml" value="0.1975" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37395833333333334" />
         <entry key="app/src/main/res/layout/fragment_add_note.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_auth.xml" value="0.3880208333333333" />
@@ -27,8 +33,10 @@
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/layout/fragment_note.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.34421691894531237" />
+        <entry key="app/src/main/res/layout/layout_map_icon.xml" value="0.64530029296875" />
         <entry key="app/src/main/res/layout/layout_no_notes_found.xml" value="0.3734375" />
         <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.40260416666666665" />
+        <entry key="app/src/main/res/layout/map_icon_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/marker_layout.xml" value="0.40260416666666665" />
         <entry key="app/src/main/res/menu/home_menu.xml" value="0.3045883178710937" />
         <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.22239583333333332" />

@@ -50,7 +50,9 @@ class FilterDialogFragment: DialogFragment() {
         }
 
         applyFilter.setOnClickListener {
-            homeViewModel.filterNotes(params[0], params[1])
+            if(params.size == 2)  {
+                homeViewModel.filterNotes(params[0], params[1])
+            }
 
             dismiss()
         }

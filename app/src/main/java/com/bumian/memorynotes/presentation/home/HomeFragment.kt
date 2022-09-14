@@ -1,10 +1,8 @@
 package com.bumian.memorynotes.presentation.home
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
@@ -213,9 +211,10 @@ class HomeFragment: Fragment() {
                     lifecycleScope.launch {
                         delay(1500)
                         withContext(Dispatchers.Main) {
-                            val generator = IconGenerator(requireContext())
-                            generator.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.transparent_bg))
-                            generator.setContentView(iconView)
+                            val generator = IconGenerator(requireContext()).apply {
+                                setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.transparent_bg))
+                                setContentView(iconView)
+                            }
                             mMap.addMarker(
                                 MarkerOptions()
                                     .position(LatLng(note.location.lat, note.location.lng))

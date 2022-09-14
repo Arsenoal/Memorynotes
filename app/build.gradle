@@ -1,10 +1,19 @@
-plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android'
-    id 'kotlin-android-extensions'
-    id 'kotlin-kapt'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+    }
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.13'
+    }
 }
 
 android {
@@ -14,8 +23,8 @@ android {
         applicationId "com.bumian.memorynotes"
         minSdk 21
         targetSdk 32
-        versionCode 5
-        versionName "1.0.3"
+        versionCode 6
+        versionName "1.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -71,7 +80,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
-    debugImplementation 'com.google.maps.android:android-maps-utils:2.4.0'
+    implementation 'com.google.maps.android:android-maps-utils:2.0.0'
 
     implementation 'com.google.firebase:firebase-analytics-ktx:21.1.1'
 
